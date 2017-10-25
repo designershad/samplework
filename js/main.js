@@ -1,4 +1,6 @@
 
+function main() {
+
 (function () {
    'use strict';
    
@@ -8,41 +10,27 @@
           target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
           if (target.length) {
             $('html,body').animate({
-              scrollTop: target.offset().top
+              scrollTop: target.offset().top - 50
             }, 900);
             return false;
           }
         }
       });
 
-	
-  	// Portfolio isotope filter
-    $(window).load(function() {
-        var $container = $('.portfolio-items');
-        $container.isotope({
-            filter: '*',
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-        $('.cat a').click(function() {
-            $('.cat .active').removeClass('active');
-            $(this).addClass('active');
-            var selector = $(this).attr('data-filter');
-            $container.isotope({
-                filter: selector,
-                animationOptions: {
-                    duration: 750,
-                    easing: 'linear',
-                    queue: false
-                }
-            });
-            return false;
-        });
 
+    $('body').scrollspy({ 
+        target: '.navbar-default',
+        offset: 80
     });
+
+	// Hide nav on click
+  $(".navbar-nav li a").click(function (event) {
+    // check if window is small enough so dropdown is created
+    var toggle = $(".navbar-toggle").is(":visible");
+    if (toggle) {
+      $(".navbar-collapse").collapse('hide');
+    }
+  });
 	
 	
     // Nivo Lightbox 
@@ -50,5 +38,9 @@
             effect: 'slideDown',  
             keyboardNav: true,                            
         });
-
+		
 }());
+
+
+}
+main();
