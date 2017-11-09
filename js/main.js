@@ -10,13 +10,23 @@ function main() {
           target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
           if (target.length) {
             $('html,body').animate({
-              scrollTop: target.offset().top - 50
+              scrollTop: target.offset().top - 40
             }, 900);
             return false;
           }
         }
       });
 
+	
+    // Show Menu on Book
+    $(window).bind('scroll', function() {
+        var navHeight = $(window).height() - 600;
+        if ($(window).scrollTop() > navHeight) {
+            $('.navbar-default').addClass('on');
+        } else {
+            $('.navbar-default').removeClass('on');
+        }
+    });
 
     $('body').scrollspy({ 
         target: '.navbar-default',
@@ -31,14 +41,7 @@ function main() {
       $(".navbar-collapse").collapse('hide');
     }
   });
-	
-	
-    // Nivo Lightbox 
-    $('.portfolio-item a').nivoLightbox({
-            effect: 'slideDown',  
-            keyboardNav: true,                            
-        });
-		
+
 }());
 
 
